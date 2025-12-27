@@ -3,109 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuringLogic - Разработка Android приложений и Telegram ботов</title>
+    <title>TuringLogic - Android приложения и Telegram боты</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
-            --secondary: #0f172a;
-            --accent: #8b5cf6;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --dark: #1e293b;
             --light: #f8fafc;
             --gray: #64748b;
             --light-gray: #e2e8f0;
             --success: #10b981;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --radius: 12px;
             --transition: all 0.3s ease;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--secondary);
-            background-color: var(--light);
             line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
             overflow-x: hidden;
         }
-
+        
         h1, h2, h3, h4 {
             font-weight: 700;
             line-height: 1.2;
+            margin-bottom: 1rem;
         }
-
+        
         h1 {
             font-size: 3.5rem;
-            margin-bottom: 1.5rem;
         }
-
+        
         h2 {
             font-size: 2.5rem;
-            margin-bottom: 1.5rem;
             text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
         }
-
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
         h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
         }
-
+        
         p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: var(--gray);
-            font-size: 1.1rem;
         }
-
+        
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
+        
         section {
             padding: 100px 0;
         }
-
+        
         .btn {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 16px 32px;
             background-color: var(--primary);
             color: white;
-            border-radius: var(--radius);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
             border: none;
-            cursor: pointer;
+            border-radius: var(--radius);
+            font-weight: 600;
             font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: var(--shadow);
         }
-
+        
         .btn:hover {
             background-color: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: var(--shadow);
         }
-
+        
         .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
+            background-color: var(--secondary);
         }
-
+        
         .btn-secondary:hover {
-            background-color: var(--primary);
-            color: white;
+            background-color: #6d28d9;
         }
-
+        
         /* Header */
         header {
             position: fixed;
@@ -113,64 +126,61 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 20px 0;
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
             transition: var(--transition);
         }
-
-        header.scrolled {
-            padding: 15px 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
+        
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
             display: flex;
             align-items: center;
+            font-family: 'Roboto Mono', monospace;
             font-weight: 700;
             font-size: 1.8rem;
-            color: var(--secondary);
+            color: var(--dark);
             text-decoration: none;
         }
-
+        
         .logo span {
             color: var(--primary);
         }
-
-        .logo i {
+        
+        .logo-icon {
             margin-right: 10px;
-            color: var(--accent);
+            color: var(--primary);
+            font-size: 2rem;
         }
-
+        
         nav ul {
             display: flex;
             list-style: none;
         }
-
+        
         nav ul li {
-            margin-left: 30px;
+            margin-left: 2rem;
         }
-
+        
         nav ul li a {
             text-decoration: none;
-            color: var(--secondary);
+            color: var(--dark);
             font-weight: 500;
             transition: var(--transition);
             position: relative;
         }
-
+        
         nav ul li a:hover {
             color: var(--primary);
         }
-
-        nav ul li a::after {
+        
+        nav ul li a:after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -180,21 +190,21 @@
             background-color: var(--primary);
             transition: var(--transition);
         }
-
-        nav ul li a:hover::after {
+        
+        nav ul li a:hover:after {
             width: 100%;
         }
-
+        
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--secondary);
+            color: var(--dark);
             cursor: pointer;
         }
-
-        /* Hero Section */
+        
+        /* Hero */
         .hero {
             padding-top: 180px;
             padding-bottom: 100px;
@@ -202,341 +212,317 @@
             position: relative;
             overflow: hidden;
         }
-
-        .hero::before {
+        
+        .hero:before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 40%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="%232563eb" opacity="0.03"/></svg>');
-            background-size: cover;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.05) 70%, transparent 100%);
+            border-radius: 50%;
             z-index: 0;
         }
-
+        
         .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: relative;
             z-index: 1;
-            max-width: 700px;
         }
-
+        
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
         .hero h1 {
-            font-size: 3.5rem;
             margin-bottom: 1.5rem;
         }
-
+        
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 2.5rem;
-            color: var(--gray);
+            max-width: 500px;
         }
-
+        
         .hero-btns {
             display: flex;
             gap: 20px;
         }
-
-        .hero-image {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40%;
-            z-index: 1;
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        /* Services Section */
+        
+        /* Services */
         .services {
             background-color: white;
         }
-
-        .section-subtitle {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
-            font-size: 1.2rem;
-            color: var(--gray);
-        }
-
+        
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-
+        
         .service-card {
             background-color: white;
             border-radius: var(--radius);
             padding: 40px 30px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: var(--transition);
+            text-align: center;
             border: 1px solid var(--light-gray);
         }
-
+        
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(37, 99, 235, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-
-        .service-icon i {
-            font-size: 30px;
-            color: var(--primary);
-        }
-
-        .service-card:nth-child(2) .service-icon {
-            background-color: rgba(139, 92, 246, 0.1);
-        }
-
-        .service-card:nth-child(2) .service-icon i {
-            color: var(--accent);
-        }        /* About Section */
-        .about {
-            background-color: #f8fafc;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-image {
-            flex: 1;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: var(--radius);
             box-shadow: var(--shadow);
-        }
-
-        .features-list {
-            margin-top: 30px;
-            list-style: none;
-        }
-
-        .features-list li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .features-list li i {
-            color: var(--success);
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        /* Process Section */
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 60px;
-            position: relative;
-        }
-
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--light-gray);
-            z-index: 0;
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            flex: 1;
-            padding: 0 20px;
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 0 auto 25px;
-            box-shadow: var(--shadow);
-        }
-
-        .step:nth-child(2) .step-number {
-            background-color: var(--accent);
-        }
-
-        .step:nth-child(3) .step-number {
-            background-color: var(--success);
-        }
-
-        /* Contact Section */
-        .contact {
-            background-color: var(--secondary);
-            color: white;
-        }
-
-        .contact h2, .contact p {
-            color: white;
-        }
-
-        .contact-content {
-            display: flex;
-            gap: 60px;
-            margin-top: 60px;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-form {
-            flex: 1;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .contact-item i {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            font-size: 1.2rem;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border-radius: var(--radius);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background-color: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
             border-color: var(--primary);
         }
-
-        .form-group textarea {
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        /* Portfolio */
+        .portfolio {
+            background-color: #f8fafc;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+        
+        .portfolio-img {
+            height: 200px;
+            background-color: #e0f2fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 4rem;
+        }
+        
+        .portfolio-content {
+            padding: 25px;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            padding: 5px 12px;
+            background-color: var(--light-gray);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Process */
+        .process-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step-number {
+            min-width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 10px;
+        }
+        
+        /* Contact */
+        .contact {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            color: white;
+        }
+        
+        .contact h2:after {
+            background: white;
+        }
+        
+        .contact p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+        
+        textarea.form-control {
             min-height: 150px;
             resize: vertical;
         }
-
-        ::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+        
+        .contact-form .btn {
+            background-color: white;
+            color: var(--primary);
+            font-weight: 700;
         }
-
+        
+        .contact-form .btn:hover {
+            background-color: var(--light);
+        }
+        
         /* Footer */
         footer {
-            background-color: #0a0f1c;
+            background-color: var(--dark);
             color: white;
-            padding: 70px 0 30px;
+            padding: 60px 0 30px;
         }
-
+        
         .footer-content {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
-
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
             margin-bottom: 20px;
+            color: white;
         }
-
+        
+        .footer-logo {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
         .footer-logo span {
-            color: var(--primary);
+            color: var(--accent);
         }
-
+        
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
         .footer-links {
-            display: flex;
-            gap: 60px;
-        }
-
-        .footer-column h4 {
-            margin-bottom: 25px;
-            font-size: 1.2rem;
-        }
-
-        .footer-column ul {
             list-style: none;
         }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
+        
+        .footer-links li {
+            margin-bottom: 10px;
         }
-
-        .footer-column ul li a {
+        
+        .footer-links a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: var(--transition);
         }
-
-        .footer-column ul li a:hover {
-            color: white;
-            padding-left: 5px;
+        
+        .footer-links a:hover {
+            color: var(--accent);
         }
-
+        
         .social-links {
             display: flex;
-            gap: 20px;
-            margin-top: 25px;
+            gap: 15px;
         }
-
-        .social-links a {
+        
+        .social-link {
             width: 40px;
             height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -544,12 +530,12 @@
             text-decoration: none;
             transition: var(--transition);
         }
-
-        .social-links a:hover {
+        
+        .social-link:hover {
             background-color: var(--primary);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
-
+        
         .copyright {
             text-align: center;
             padding-top: 30px;
@@ -557,7 +543,7 @@
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
         }
-
+        
         /* Responsive */
         @media (max-width: 992px) {
             h1 {
@@ -568,94 +554,78 @@
                 font-size: 2.2rem;
             }
             
-            .hero {
-                padding-top: 150px;
-            }
-            
-            .hero-image {
-                position: relative;
-                right: 0;
-                top: 0;
-                transform: none;
-                width: 100%;
-                margin-top: 50px;
-            }
-            
-            .about-content {
+            .hero-content {
                 flex-direction: column;
+                text-align: center;
             }
             
-            .contact-content {
-                flex-direction: column;
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 50px;
             }
             
-            .process-steps {
-                flex-direction: column;
-                gap: 50px;
-            }
-            
-            .process-steps::before {
-                display: none;
+            .hero-btns {
+                justify-content: center;
             }
         }
-
+        
         @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
             .mobile-menu-btn {
                 display: block;
             }
             
-            nav {
+            .mobile-menu {
                 position: fixed;
                 top: 80px;
                 left: 0;
                 width: 100%;
                 background-color: white;
                 padding: 20px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
                 transform: translateY(-100%);
                 opacity: 0;
-                visibility: hidden;
                 transition: var(--transition);
+                z-index: 999;
             }
             
-            nav.active {
+            .mobile-menu.active {
                 transform: translateY(0);
                 opacity: 1;
-                visibility: visible;
             }
             
-            nav ul {
+            .mobile-menu ul {
+                list-style: none;
+            }
+            
+            .mobile-menu ul li {
+                margin-bottom: 15px;
+            }
+            
+            .mobile-menu ul li a {
+                text-decoration: none;
+                color: var(--dark);
+                font-weight: 500;
+                font-size: 1.1rem;
+            }
+            
+            .step {
                 flex-direction: column;
-            }
-            
-            nav ul li {
-                margin: 0 0 20px 0;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .btn {
-                width: 100%;
                 text-align: center;
             }
             
-            .footer-content {
-                flex-direction: column;
-                gap: 40px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 40px;
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 15px;
             }
         }
-
+        
         @media (max-width: 576px) {
             h1 {
-                font-size: 2.3rem;
+                font-size: 2.2rem;
             }
             
             h2 {
@@ -666,33 +636,62 @@
                 padding: 70px 0;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
+            .hero {
+                padding-top: 150px;
+                padding-bottom: 70px;
+            }
+            
+            .btn {
+                padding: 14px 28px;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .hero-btns .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
             }
         }
     </style>
-</head><body>
+</head>
+<body>
     <!-- Header -->
-    <header id="header">
+    <header>
         <div class="container header-container">
             <a href="#" class="logo">
-                <i class="fas fa-code"></i>
+                <i class="fas fa-code logo-icon"></i>
                 Turing<span>Logic</span>
             </a>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <nav id="mainNav">
+            <nav>
                 <ul>
                     <li><a href="#home">Главная</a></li>
                     <li><a href="#services">Услуги</a></li>
-                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
                     <li><a href="#process">Процесс</a></li>
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
             </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#process">Процесс</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
         </div>
     </header>
 
@@ -700,16 +699,17 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1>Автоматизируем ваш бизнес с помощью технологий</h1>
-                <p>TuringLogic специализируется на разработке современных Android приложений и интеллектуальных Telegram ботов для автоматизации бизнес-процессов.</p>
-                <div class="hero-btns">
-                    <a href="#contact" class="btn">Обсудить проект</a>
-                    <a href="#services" class="btn btn-secondary">Наши услуги</a>
+                <div class="hero-text">
+                    <h1>Android приложения и Telegram боты для вашего бизнеса</h1>
+                    <p>Мы создаем современные мобильные решения и автоматизируем бизнес-процессы с помощью интеллектуальных Telegram ботов. Превращаем ваши идеи в эффективные digital-продукты.</p>
+                    <div class="hero-btns">
+                        <a href="#contact" class="btn">Обсудить проект</a>
+                        <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <!-- Это место для изображения, используем градиент в качестве заполнителя -->
-                <div style="width:100%; height:400px; background: linear-gradient(45deg, #2563eb, #8b5cf6); border-radius: var(--radius);"></div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Разработка приложений">
+                </div>
             </div>
         </div>
     </section>
@@ -718,193 +718,183 @@
     <section class="services" id="services">
         <div class="container">
             <h2>Наши услуги</h2>
-            <p class="section-subtitle">Мы предлагаем полный цикл разработки IT-решений, которые помогут вашему бизнесу стать эффективнее и технологичнее</p>
-            
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fab fa-android"></i>
                     </div>
-                    <h3>Разработка Android приложений</h3>
-                    <p>Создаем современные, производительные и удобные мобильные приложения для платформы Android, которые решают конкретные бизнес-задачи и улучшают взаимодействие с клиентами.</p>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Нативные приложения на Kotlin/Java</li>
-                        <li><i class="fas fa-check"></i> Кроссплатформенные решения</li>
-                        <li><i class="fas fa-check"></i> Интеграция с серверными системами</li>
-                        <li><i class="fas fa-check"></i> Публикация в Google Play</li>
-                    </ul>
+                    <h3>Android приложения</h3>
+                    <p>Разработка нативных Android приложений с современным дизайном и высокой производительностью. От MVP до сложных корпоративных решений.</p>
                 </div>
                 
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fab fa-telegram"></i>
                     </div>
-                    <h3>Telegram боты для бизнеса</h3>
-                    <p>Разрабатываем интеллектуальных Telegram ботов для автоматизации бизнес-процессов: от службы поддержки до систем управления заказами и рассылок.</p>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Боты для поддержки клиентов</li>
-                        <li><i class="fas fa-check"></i> Автоматизация продаж</li>
-                        <li><i class="fas fa-check"></i> Интеграция с CRM системами</li>
-                        <li><i class="fas fa-check"></i> Мультиязычные решения</li>
-                    </ul>
+                    <h3>Telegram боты</h3>
+                    <p>Создание умных Telegram ботов для автоматизации бизнес-процессов: онлайн-заказы, поддержка клиентов, уведомления и многое другое.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Интеграция систем</h3>
+                    <p>Интеграция ваших приложений и ботов с существующими системами, CRM, базами данных и внешними API.</p>
                 </div>
             </div>
         </div>
-    </section><!-- About Section -->
-<section class="about" id="about">
-    <div class="container">
-        <h2>О компании TuringLogic</h2>
-        <p class="section-subtitle">Мы команда экспертов, которые превращают сложные бизнес-задачи в элегантные технологические решения</p>
-        
-        <div class="about-content">
-            <div class="about-text">
-                <p>Основанная в 2020 году, компания TuringLogic быстро зарекомендовала себя как надежный партнер для бизнесов, стремящихся использовать современные технологии для роста и автоматизации.</p>
-                <p>Наш подход сочетает глубокое понимание бизнес-процессов с экспертизой в области разработки программного обеспечения. Мы не просто пишем код - мы создаем решения, которые приносят измеримую ценность.</p>
-                <p>Название TuringLogic отдает дань уважения Алану Тьюрингу, пионеру компьютерных наук, и отражает наше стремление к логическому, структурированному подходу в решении сложных задач.</p>
-                <ul class="features-list">
-                    <li><i class="fas fa-check"></i> Более 50 успешных проектов</li>
-                    <li><i class="fas fa-check"></i> Команда из 15+ опытных разработчиков</li>
-                    <li><i class="fas fa-check"></i> Клиенты в 7 странах мира</li>
-                    <li><i class="fas fa-check"></i> 95% клиентов возвращаются с новыми проектами</li>
-                </ul>
-            </div>
-            <div class="about-image">
-                <!-- Это место для изображения, используем градиент в качестве заполнителя -->
-                <div style="width:100%; height:400px; background: linear-gradient(45deg, #10b981, #0ea5e9); border-radius: var(--radius);"></div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- Process Section -->
-<section class="process" id="process">
-    <div class="container">
-        <h2>Как мы работаем</h2>
-        <p class="section-subtitle">Прозрачный и эффективный процесс разработки, который гарантирует качество результата и соблюдение сроков</p>
-        
-        <div class="process-steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Анализ и планирование</h3>
-                <p>Глубоко изучаем ваш бизнес, цели и задачи. Совместно формируем техническое задание и план реализации.</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Дизайн и прототипирование</h3>
-                <p>Создаем прототипы и дизайн интерфейсов, которые обеспечивают удобство использования и соответствуют вашим бренд-стандартам.</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Разработка и тестирование</h3>
-                <p>Реализуем проект, придерживаясь лучших практик разработки. Проводим комплексное тестирование на всех этапах.</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">4</div>
-                <h3>Запуск и поддержка</h3>
-                <p>Помогаем с запуском проекта и предоставляем дальнейшую техническую поддержку и развитие решения.</p>
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2>Наши работы</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>FoodDeliver App</h3>
+                        <p>Приложение для доставки еды с функцией онлайн-заказа, отслеживания курьера и системой лояльности.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Android</span>
+                            <span class="tag">Kotlin</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>FinanceBot</h3>
+                        <p>Telegram бот для управления личными финансами с аналитикой расходов, бюджетированием и уведомлениями.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Telegram Bot</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>EventManager App</h3>
+                        <p>Мобильное приложение для организации мероприятий с продажей билетов, расписанием и push-уведомлениями.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Android</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">REST API</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Contact Section -->
-<section class="contact" id="contact">
-    <div class="container">
-        <h2>Связаться с нами</h2>
-        <p class="section-subtitle">Готовы обсудить ваш проект? Оставьте заявку, и мы свяжемся с вами в течение 24 часов</p>
-        
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3>Контактная информация</h3>
-                <p>Свяжитесь с нами любым удобным способом. Мы всегда открыты для обсуждения новых проектов и идей.</p>
-                
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h4>Адрес</h4>
-                        <p>Москва, ул. Тверская, 12</p>
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2>Как мы работаем</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Анализ и планирование</h3>
+                        <p>Изучаем ваши цели, целевую аудиторию и бизнес-процессы. Создаем техническое задание и план разработки.</p>
                     </div>
                 </div>
                 
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <h4>Телефон</h4>
-                        <p>+7 (495) 123-45-67</p>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Дизайн и прототипирование</h3>
+                        <p>Разрабатываем пользовательский интерфейс и создаем интерактивный прототип для утверждения.</p>
                     </div>
                 </div>
                 
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h4>Email</h4>
-                        <p>info@turinglogic.ru</p>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Разработка и тестирование</h3>
+                        <p>Пишем чистый, эффективный код и проводим всестороннее тестирование на разных этапах разработки.</p>
                     </div>
                 </div>
                 
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-telegram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Запуск и поддержка</h3>
+                        <p>Помогаем с запуском проекта, обучаем вашу команду и предоставляем техническую поддержку после релиза.</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <input type="text" placeholder="Ваше имя" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" placeholder="Ваш email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="text" placeholder="Тема сообщения" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea placeholder="Опишите ваш проект или задачу" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn">Отправить сообщение</button>
-                </form>
             </div>
         </div>
-    </div>
-</section>    <!-- Footer -->
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Обсудим ваш проект?</h2>
+            <p>Оставьте заявку, и мы свяжемся с вами в течение 24 часов для бесплатной консультации</p>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Тема проекта">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Опишите ваш проект или задайте вопрос" required></textarea>
+                </div>
+                <button type="submit" class="btn">Отправить заявку</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">Turing<span>Logic</span></div>
-                    <p>Разработка Android приложений и Telegram ботов для автоматизации бизнеса. Превращаем сложные задачи в элегантные технологические решения.</p>
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">Turing<span>Logic</span></a>
+                    <p>Создаем инновационные digital-решения для бизнеса: Android приложения и Telegram боты.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
                 
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Услуги</h4>
-                        <ul>
-                            <li><a href="#">Android разработка</a></li>
-                            <li><a href="#">Telegram боты</a></li>
-                            <li><a href="#">Автоматизация бизнеса</a></li>
-                            <li><a href="#">Техническая поддержка</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Компания</h4>
-                        <ul>
-                            <li><a href="#about">О нас</a></li>
-                            <li><a href="#process">Процесс работы</a></li>
-                            <li><a href="#contact">Контакты</a></li>
-                            <li><a href="#">Вакансии</a></li>
-                        </ul>
-                    </div>
+                <div class="footer-column">
+                    <h3>Услуги</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Android разработка</a></li>
+                        <li><a href="#services">Telegram боты</a></li>
+                        <li><a href="#services">Интеграция систем</a></li>
+                        <li><a href="#services">Техническая поддержка</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@turinglogic.ru</li>
+                        <li><i class="fas fa-phone"></i> +7 (999) 123-45-67</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Технологическая, 42</li>
+                    </ul>
                 </div>
             </div>
             
@@ -917,32 +907,22 @@
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mainNav = document.getElementById('mainNav');
+        const mobileMenu = document.getElementById('mobileMenu');
         
         mobileMenuBtn.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+            mobileMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
         });
         
         // Close mobile menu when clicking on a link
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+        mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
+                mobileMenu.classList.remove('active');
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
-        });
-        
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
         });
         
         // Form submission
@@ -950,13 +930,20 @@
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Here you would normally send the form data to a server
-            // For this example, we'll just show an alert
-            alert('Спасибо за ваше сообщение! Мы свяжемся с вами в течение 24 часов.');
+            // Get form data
+            const formData = new FormData(contactForm);
+            const name = contactForm.querySelector('input[type="text"]').value;
+            const email = contactForm.querySelector('input[type="email"]').value;
+            
+            // In a real application, you would send this data to a server
+            // For demo purposes, we'll just show an alert
+            alert(`Спасибо, ${name}! Мы получили вашу заявку и свяжемся с вами по адресу ${email} в течение 24 часов.`);
+            
+            // Reset form
             contactForm.reset();
         });
         
-        // Smooth scrolling for anchor links
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -972,6 +959,18 @@
                     });
                 }
             });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '15px 0';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '20px 0';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
         });
     </script>
 </body>
