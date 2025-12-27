@@ -4,10 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TuringLogic - Android приложения и Telegram боты</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Разработка Android приложений и Telegram ботов для бизнеса. Современные решения, качественный код, поддержка.">
+    <meta name="keywords" content="Android разработка, Telegram боты, мобильные приложения, Kotlin, Java, Python">
+    <meta name="author" content="TuringLogic">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="TuringLogic - Android приложения и Telegram боты">
+    <meta property="og:description" content="Создаем digital-решения для вашего бизнеса">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://turinglogicrus.github.io">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <meta name="theme-color" content="#2563eb">
+    
+    <!-- Preload и Preconnect -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" as="image">
+    
+    <!-- Стили -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary: #2563eb;
@@ -24,6 +47,35 @@
             --transition: all 0.3s ease;
         }
         
+        /* Прогресс-бар скролла */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            z-index: 1001;
+            transition: width 0.1s ease;
+            pointer-events: none;
+        }
+        
+        /* Отключение анимаций при prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .btn:hover,
+            .service-card:hover,
+            .portfolio-item:hover {
+                transform: none !important;
+            }
+        }
+        
+        /* Основные стили остаются без изменений */
         * {
             margin: 0;
             padding: 0;
@@ -249,6 +301,7 @@
             height: auto;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
+            display: block;
         }
         
         .hero h1 {
@@ -264,284 +317,6 @@
         .hero-btns {
             display: flex;
             gap: 20px;
-        }
-        
-        /* Services */
-        .services {
-            background-color: white;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background-color: white;
-            border-radius: var(--radius);
-            padding: 40px 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            text-align: center;
-            border: 1px solid var(--light-gray);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow);
-            border-color: var(--primary);
-        }
-        
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: white;
-            font-size: 2rem;
-        }
-        
-        /* Portfolio */
-        .portfolio {
-            background-color: #f8fafc;
-        }
-        
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .portfolio-item {
-            background-color: white;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-        
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow);
-        }
-        
-        .portfolio-img {
-            height: 200px;
-            background-color: #e0f2fe;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 4rem;
-        }
-        
-        .portfolio-content {
-            padding: 25px;
-        }
-        
-        .portfolio-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-        
-        .tag {
-            padding: 5px 12px;
-            background-color: var(--light-gray);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        /* Process */
-        .process-steps {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        
-        .step-number {
-            min-width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.5rem;
-            margin-right: 25px;
-            flex-shrink: 0;
-        }
-        
-        .step-content h3 {
-            margin-bottom: 10px;
-        }
-        
-        /* Contact */
-        .contact {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            text-align: center;
-        }
-        
-        .contact h2 {
-            color: white;
-        }
-        
-        .contact h2:after {
-            background: white;
-        }
-        
-        .contact p {
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 16px 20px;
-            border-radius: var(--radius);
-            border: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .form-control:focus {
-            outline: none;
-            background-color: white;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .contact-form .btn {
-            background-color: white;
-            color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .contact-form .btn:hover {
-            background-color: var(--light);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 60px 0 30px;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: white;
-        }
-        
-        .footer-logo {
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 700;
-            font-size: 1.8rem;
-            color: white;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-        
-        .footer-logo span {
-            color: var(--accent);
-        }
-        
-        .footer-column p {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .social-link:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
         }
         
         /* Responsive */
@@ -611,16 +386,6 @@
                 font-weight: 500;
                 font-size: 1.1rem;
             }
-            
-            .step {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .step-number {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
         }
         
         @media (max-width: 576px) {
@@ -630,6 +395,10 @@
             
             h2 {
                 font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
             }
             
             section {
@@ -660,15 +429,18 @@
     </style>
 </head>
 <body>
+    <!-- Прогресс-бар скролла -->
+    <div class="progress-bar" id="progressBar"></div>
+    
     <!-- Header -->
     <header>
         <div class="container header-container">
             <a href="#" class="logo">
-                <i class="fas fa-code logo-icon"></i>
+                <i class="fas fa-code logo-icon" aria-hidden="true"></i>
                 Turing<span>Logic</span>
             </a>
             
-            <nav>
+            <nav aria-label="Основная навигация">
                 <ul>
                     <li><a href="#home">Главная</a></li>
                     <li><a href="#services">Услуги</a></li>
@@ -678,7 +450,7 @@
                 </ul>
             </nav>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -707,8 +479,12 @@
                         <a href="#portfolio" class="btn btn-secondary">Наши работы</a>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Разработка приложений">
+                <div class="hero-image" aria-hidden="true">
+                    <img 
+                        src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                        alt="Разработка мобильных приложений на Android и Telegram ботов"
+                        loading="lazy"
+                    >
                 </div>
             </div>
         </div>
@@ -721,7 +497,7 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fab fa-android"></i>
+                        <i class="fab fa-android" aria-hidden="true"></i>
                     </div>
                     <h3>Android приложения</h3>
                     <p>Разработка нативных Android приложений с современным дизайном и высокой производительностью. От MVP до сложных корпоративных решений.</p>
@@ -729,7 +505,7 @@
                 
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fab fa-telegram"></i>
+                        <i class="fab fa-telegram" aria-hidden="true"></i>
                     </div>
                     <h3>Telegram боты</h3>
                     <p>Создание умных Telegram ботов для автоматизации бизнес-процессов: онлайн-заказы, поддержка клиентов, уведомления и многое другое.</p>
@@ -737,7 +513,7 @@
                 
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
+                        <i class="fas fa-cogs" aria-hidden="true"></i>
                     </div>
                     <h3>Интеграция систем</h3>
                     <p>Интеграция ваших приложений и ботов с существующими системами, CRM, базами данных и внешними API.</p>
@@ -753,7 +529,7 @@
             <div class="portfolio-grid">
                 <div class="portfolio-item">
                     <div class="portfolio-img">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
                     </div>
                     <div class="portfolio-content">
                         <h3>FoodDeliver App</h3>
@@ -768,7 +544,7 @@
                 
                 <div class="portfolio-item">
                     <div class="portfolio-img">
-                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-robot" aria-hidden="true"></i>
                     </div>
                     <div class="portfolio-content">
                         <h3>FinanceBot</h3>
@@ -783,7 +559,7 @@
                 
                 <div class="portfolio-item">
                     <div class="portfolio-img">
-                        <i class="fas fa-calendar-check"></i>
+                        <i class="fas fa-calendar-check" aria-hidden="true"></i>
                     </div>
                     <div class="portfolio-content">
                         <h3>EventManager App</h3>
@@ -832,146 +608,159 @@
                     <div class="step-number">4</div>
                     <div class="step-content">
                         <h3>Запуск и поддержка</h3>
-                        <p>Помогаем с запуском проекта, обучаем вашу команду и предоставляем техническую поддержку после релиза.</p>
-                    </div>
+turinglogicrus
+cd Turinglogicrus
+cd ~/TuringLogicRus && cat > update_site.sh << 'EOF'
+#!/data/data/com.termux/files/usr/bin/bash
+
+echo "🚀 Обновление сайта TuringLogic..."
+
+# Создаем резервную копию
+BACKUP_FILE="index_backup_$(date +%Y%m%d_%H%M%S).html"
+cp index.html "$BACKUP_FILE"
+echo "💾 Резервная копия: $BACKUP_FILE"
+
+# Создаем новый index.html (упрощенная версия без всего лишнего)
+cat > index.html << 'HTML_EOF'
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuringLogic - Android приложения и Telegram боты</title>
+    <meta name="description" content="Разработка Android приложений и Telegram ботов для бизнеса">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #2563eb; --secondary: #7c3aed; --accent: #06b6d4; --dark: #1e293b; --light: #f8fafc; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--dark); background-color: var(--light); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { position: fixed; top: 0; width: 100%; background: white; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; }
+        .logo { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.8rem; color: var(--dark); text-decoration: none; }
+        .logo span { color: var(--primary); }
+        .btn { display: inline-block; padding: 16px 32px; background: var(--primary); color: white; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        .btn:hover { background: #1d4ed8; transform: translateY(-3px); }
+        section { padding: 100px 0; }
+        h1 { font-size: 3.5rem; margin-bottom: 1.5rem; }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; }
+        .hero { padding-top: 180px; background: linear-gradient(135deg, #f0f9ff 0%, #fef7ff 100%); }
+        .hero-content { display: flex; align-items: center; justify-content: space-between; }
+        .hero-text { flex: 1; max-width: 600px; }
+        .hero-image { flex: 1; max-width: 500px; }
+        .hero-image img { max-width: 100%; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .service-card { background: white; padding: 40px 30px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .service-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: white; font-size: 2rem; }
+        footer { background: var(--dark); color: white; padding: 60px 0 30px; }
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-text { margin-bottom: 50px; }
+        }
+        @media (max-width: 576px) {
+            h1 { font-size: 2.2rem; }
+            section { padding: 70px 0; }
+            .hero { padding-top: 150px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="#" class="logo"><i class="fas fa-code"></i> Turing<span>Logic</span></a>
+            <nav>
+                <a href="#home" style="margin-left: 2rem; color: var(--dark); text-decoration: none; font-weight: 500;">Главная</a>
+                <a href="#services" style="margin-left: 2rem; color: var(--dark); text-decoration: none; font-weight: 500;">Услуги</a>
+                <a href="#contact" style="margin-left: 2rem; color: var(--dark); text-decoration: none; font-weight: 500;">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Android приложения и Telegram боты</h1>
+                    <p style="font-size: 1.2rem; margin-bottom: 2.5rem; color: #64748b;">Создаем современные решения для вашего бизнеса. Качественный код, поддержка, результат.</p>
+                    <a href="#contact" class="btn">Обсудить проект</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Разработка приложений" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section id="services">
         <div class="container">
-            <h2>Обсудим ваш проект?</h2>
-            <p>Оставьте заявку, и мы свяжемся с вами в течение 24 часов для бесплатной консультации</p>
-            
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Ваше имя" required>
+            <h2>Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fab fa-android"></i></div>
+                    <h3>Android приложения</h3>
+                    <p>Разработка нативных Android приложений с современным дизайном и высокой производительностью.</p>
                 </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email" required>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fab fa-telegram"></i></div>
+                    <h3>Telegram боты</h3>
+                    <p>Создание умных Telegram ботов для автоматизации бизнес-процессов и коммуникации с клиентами.</p>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Тема проекта">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Интеграция систем</h3>
+                    <p>Интеграция ваших приложений и ботов с CRM, базами данных и внешними API.</p>
                 </div>
-                <div class="form-group">
-                    <textarea class="form-control" placeholder="Опишите ваш проект или задайте вопрос" required></textarea>
-                </div>
-                <button type="submit" class="btn">Отправить заявку</button>
-            </form>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section id="contact" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="color: white;">Контакты</h2>
+            <p style="max-width: 600px; margin: 0 auto 40px; color: rgba(255,255,255,0.9);">Готовы обсудить ваш проект?</p>
+            <div style="max-width: 400px; margin: 0 auto;">
+                <p><i class="fas fa-envelope"></i> info@turinglogic.ru</p>
+                <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                <p><i class="fas fa-map-marker-alt"></i> Москва</p>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <a href="#" class="footer-logo">Turing<span>Logic</span></a>
-                    <p>Создаем инновационные digital-решения для бизнеса: Android приложения и Telegram боты.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+            <div style="text-align: center;">
+                <a href="#" class="logo" style="color: white; margin-bottom: 20px; display: inline-block;">Turing<span style="color: #06b6d4;">Logic</span></a>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">Создаем digital-решения для бизнеса</p>
+                <div style="margin-bottom: 30px;">
+                    <a href="#" style="color: white; margin: 0 10px; font-size: 1.5rem;"><i class="fab fa-telegram"></i></a>
+                    <a href="#" style="color: white; margin: 0 10px; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Услуги</h3>
-                    <ul class="footer-links">
-                        <li><a href="#services">Android разработка</a></li>
-                        <li><a href="#services">Telegram боты</a></li>
-                        <li><a href="#services">Интеграция систем</a></li>
-                        <li><a href="#services">Техническая поддержка</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Контакты</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> info@turinglogic.ru</li>
-                        <li><i class="fas fa-phone"></i> +7 (999) 123-45-67</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Технологическая, 42</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 TuringLogic. Все права защищены.</p>
+                <p style="color: rgba(255,255,255,0.5);">&copy; 2023 TuringLogic</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close mobile menu when clicking on a link
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const name = contactForm.querySelector('input[type="text"]').value;
-            const email = contactForm.querySelector('input[type="email"]').value;
-            
-            // In a real application, you would send this data to a server
-            // For demo purposes, we'll just show an alert
-            alert(`Спасибо, ${name}! Мы получили вашу заявку и свяжемся с вами по адресу ${email} в течение 24 часов.`);
-            
-            // Reset form
-            contactForm.reset();
-        });
-        
-        // Smooth scroll for anchor links
+        // Простой скрипт для плавной прокрутки
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+                if(targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if(target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
             });
         });
         
-        // Header scroll effect
+        // Меняем хедер при скролле
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.padding = '15px 0';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.padding = '20px 0';
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-            }
+            header.style.padding = window.scrollY > 100 ? '15px 0' : '20px 0';
         });
+        
+        console.log('✅ Сайт TuringLogic загружен!');
     </script>
 </body>
 </html>
