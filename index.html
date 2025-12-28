@@ -12,7 +12,7 @@
     
     <!-- Open Graph -->
     <meta property="og:title" content="TuringLogic - Профессиональная IT разработка">
-    <meta property="og:description" content="Создаем сложные IT-решения для бизнеса">
+    <meta property="og:description" content="Создаем IT-решения для бизнеса">
     <meta property="og:image" content="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&h=630&fit=crop">
     <meta property="og:type" content="website">
     
@@ -154,6 +154,7 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            white-space: nowrap;
         }
         
         .btn::before {
@@ -205,7 +206,7 @@
             color: white;
         }
         
-        /* Header - Улучшенный */
+        /* Header - Улучшенный с исправлением кнопки */
         .header {
             position: fixed;
             top: 0;
@@ -228,6 +229,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
         }
         
         .logo {
@@ -235,6 +237,7 @@
             align-items: center;
             text-decoration: none;
             gap: 12px;
+            flex-shrink: 0;
         }
         
         .logo-icon {
@@ -264,13 +267,17 @@
         .nav {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            flex: 1;
         }
         
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 32px;
+            gap: 25px;
+            flex-wrap: wrap;
         }
         
         .nav-item {
@@ -345,6 +352,10 @@
             color: var(--primary);
         }
         
+        .order-btn {
+            flex-shrink: 0;
+        }
+        
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -355,7 +366,7 @@
             padding: 5px;
         }
         
-        /* Hero - Улучшенный */
+        /* Hero - Улучшенный с исправленными бейджами */
         .hero {
             padding-top: 200px;
             padding-bottom: 150px;
@@ -456,29 +467,47 @@
             display: block;
         }
         
+        /* Исправленные бейджи - перемещены вверх и уменьшены */
         .hero-badges {
             position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 20px;
+            left: 20px;
             display: flex;
-            gap: 15px;
+            gap: 10px;
+            flex-direction: column;
+            align-items: flex-start;
+            z-index: 2;
         }
         
         .badge {
             background: white;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 50px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-sm);
             display: flex;
             align-items: center;
             gap: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .badge:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
         }
         
         .badge i {
             color: var(--primary);
+            font-size: 0.9rem;
+        }
+        
+        .badge.google-play i {
+            color: #3ddc84;
+        }
+        
+        .badge.telegram-api i {
+            color: #0088cc;
         }
         
         /* Services - Улучшенный */
@@ -963,7 +992,7 @@
             animation: float 5s ease-in-out infinite;
         }
         
-        /* Responsive */
+        /* Responsive - ВАЖНЫЕ ИСПРАВЛЕНИЯ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ */
         @media (max-width: 1024px) {
             h1 { font-size: 3rem; }
             h2 { font-size: 2.4rem; }
@@ -972,25 +1001,153 @@
             .hero-stats { justify-content: center; }
             .contact-wrapper { grid-template-columns: 1fr; }
             .pricing-card.popular { transform: none; }
+            
+            /* Исправление кнопки в хедере */
+            .nav {
+                gap: 15px;
+            }
+            
+            .nav-menu {
+                gap: 20px;
+            }
         }
         
         @media (max-width: 768px) {
-            .nav-menu { display: none; }
-            .mobile-menu-btn { display: block; }
-            .nav { gap: 20px; }
-            .hero { padding-top: 150px; padding-bottom: 100px; }
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            .section { padding: 80px 0; }
-            .portfolio-grid { grid-template-columns: 1fr; }
+            .nav-menu { 
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                gap: 15px;
+                z-index: 100;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn { 
+                display: block;
+                order: 3;
+            }
+            
+            /* Кнопка "Заказать проект" на мобильных */
+            .order-btn {
+                order: 2;
+                margin-left: auto;
+            }
+            
+            .order-btn .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .logo {
+                order: 1;
+            }
+            
+            .hero { 
+                padding-top: 160px; 
+                padding-bottom: 100px; 
+            }
+            
+            h1 { 
+                font-size: 2.5rem; 
+            }
+            
+            h2 { 
+                font-size: 2rem; 
+            }
+            
+            .section { 
+                padding: 80px 0; 
+            }
+            
+            .portfolio-grid { 
+                grid-template-columns: 1fr; 
+            }
+            
+            /* Бейджи на мобильных */
+            .hero-badges {
+                top: 15px;
+                left: 15px;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .badge {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
         }
         
         @media (max-width: 576px) {
-            h1 { font-size: 2rem; }
-            .hero-description { font-size: 1rem; }
-            .hero-stats { flex-direction: column; gap: 20px; }
-            .btn { padding: 14px 24px; }
-            .services-grid, .pricing-grid { grid-template-columns: 1fr; }
+            h1 { 
+                font-size: 2rem; 
+            }
+            
+            .hero-description { 
+                font-size: 1rem; 
+            }
+            
+            .hero-stats { 
+                flex-direction: column; 
+                gap: 20px; 
+            }
+            
+            .btn { 
+                padding: 14px 24px; 
+            }
+            
+            .services-grid, .pricing-grid { 
+                grid-template-columns: 1fr; 
+            }
+            
+            /* Дополнительные исправления для очень маленьких экранов */
+            .order-btn .btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .hero-badges {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .badge {
+                padding: 5px 10px;
+                font-size: 0.7rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            /* Для самых маленьких экранов скрываем текст в кнопке */
+            .order-btn .btn span {
+                display: none;
+            }
+            
+            .order-btn .btn i {
+                margin: 0;
+            }
+            
+            .order-btn .btn {
+                width: 44px;
+                height: 44px;
+                padding: 0;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -1022,9 +1179,11 @@
                     <li class="nav-item"><a href="#contact" class="nav-link">Контакты</a></li>
                 </ul>
                 
-                <button class="btn btn-accent" id="openModalBtn">
-                    <i class="fas fa-paper-plane"></i> Заказать проект
-                </button>
+                <div class="order-btn">
+                    <button class="btn btn-accent" id="openModalBtn">
+                        <i class="fas fa-paper-plane"></i> <span>Заказать проект</span>
+                    </button>
+                </div>
                 
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
@@ -1039,8 +1198,9 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <div class="hero-subtitle">ПРОФЕССИОНАЛЬНАЯ IT-РАЗРАБОТКА</div>
+                    <!-- Убрано слово "сложных" -->
                     <h1>Создаём digital-продукты для роста вашего бизнеса</h1>
-                    <p class="hero-description">Мы специализируемся на разработке сложных Android приложений и интеллектуальных Telegram ботов. От идеи до запуска и поддержки — полный цикл разработки.</p>
+                    <p class="hero-description">Мы специализируемся на разработке Android приложений и интеллектуальных Telegram ботов. От идеи до запуска и поддержки — полный цикл разработки.</p>
                     
                     <div class="hero-btns" style="display: flex; gap: 20px;">
                         <a href="#portfolio" class="btn">
@@ -1070,13 +1230,14 @@
                 <div class="hero-image">
                     <div class="hero-image-wrapper">
                         <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Команда разработчиков" loading="lazy">
-                    </div>
-                    <div class="hero-badges">
-                        <div class="badge">
-                            <i class="fab fa-google-play"></i> Google Play
-                        </div>
-                        <div class="badge">
-                            <i class="fab fa-telegram"></i> Telegram API
+                        <!-- Исправленные бейджи - теперь вверху и не закрывают -->
+                        <div class="hero-badges">
+                            <div class="badge google-play">
+                                <i class="fab fa-google-play"></i> Google Play
+                            </div>
+                            <div class="badge telegram-api">
+                                <i class="fab fa-telegram"></i> Telegram API
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1095,8 +1256,9 @@
                     <div class="service-icon">
                         <i class="fab fa-android"></i>
                     </div>
+                    <!-- Убрано слово "сложных" -->
                     <h3>Android разработка</h3>
-                    <p>Создание нативных мобильных приложений под Android с использованием Kotlin и Java. От MVP до Enterprise-решений.</p>
+                    <p>Создание мобильных приложений под Android с использованием Kotlin и Java. От MVP до Enterprise-решений.</p>
                     <ul class="service-features">
                         <li><i class="fas fa-check"></i> Архитектура MVVM/MVI</li>
                         <li><i class="fas fa-check"></i> Material Design 3</li>
@@ -1368,7 +1530,7 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <a href="#" class="footer-logo">Turing<span>Logic</span></a>
-                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">Профессиональная разработка IT-решений для бизнеса. Создаем сложные продукты, которые работают и приносят прибыль.</p>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">Профессиональная разработка IT-решений для бизнеса. Создаем продукты, которые работают и приносят прибыль.</p>
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Telegram">
                             <i class="fab fa-telegram"></i>
@@ -1485,22 +1647,18 @@
         const navMenu = document.querySelector('.nav-menu');
         
         mobileMenuBtn.addEventListener('click', () => {
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-            mobileMenuBtn.innerHTML = navMenu.style.display === 'flex' 
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
-            
-            if (navMenu.style.display === 'flex') {
-                navMenu.style.position = 'absolute';
-                navMenu.style.top = '100%';
-                navMenu.style.left = '0';
-                navMenu.style.right = '0';
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.background = 'white';
-                navMenu.style.padding = '20px';
-                navMenu.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-                navMenu.style.gap = '15px';
-            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
         });
 
         // Modal functionality
@@ -1595,7 +1753,7 @@
                 if (targetElement) {
                     // Close mobile menu if open
                     if (window.innerWidth <= 768) {
-                        navMenu.style.display = 'none';
+                        navMenu.classList.remove('active');
                         mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                     }
                     
@@ -1608,34 +1766,9 @@
             });
         });
 
-        // Animation on scroll (basic implementation)
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.querySelectorAll('.service-card, .portfolio-item, .pricing-card').forEach(el => {
-            observer.observe(el);
-        });
-
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             console.log('🚀 TuringLogic website loaded successfully!');
-            
-            // Set current year in footer
-            const yearElement = document.querySelector('#currentYear');
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
         });
     </script>
 </body>
